@@ -22,8 +22,7 @@ public class ConnectionDB {
             System.out.println("Ocurrio un error en la conexion " + ex.getMessage());
         }
 
-
-
+g
         return  connection;
 
 

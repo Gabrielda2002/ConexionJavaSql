@@ -1,8 +1,8 @@
 
-package main.java.com.gcda.dao;
+package com.gcda.dao;
 
-import static main.java.com.gcda.connection.ConnectionDB.getConnectionDB;
 
+import static com.gcda.connection.ConnectionDB.getConnectionDB;
 import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -49,7 +49,7 @@ public class StudentDao {
         PreparedStatement ps;
         ResultSet  rs;
         Connection con = getConnectionDB();
-        String sql = "SELECT FROM student WHERE idStudent = ?";
+        String sql = "SELECT *   FROM student WHERE idStudent = ?";
 
 
         try {
@@ -57,7 +57,7 @@ public class StudentDao {
             ps.setInt(1,student.getId_Student());
             rs=ps.executeQuery();
             while (rs.next()){
-                student.setNombre(rs.getString("name"));
+                student.setNombre(rs.getString("firts_name"));
                 student.setApellido(rs.getString("last_name"));
                 student.setTelefono(rs.getString("phone"));
                 student.setEmail(rs.getString("email"));
@@ -133,7 +133,7 @@ public class StudentDao {
         return students;
     }
 
-    public void actualizar(Student student){
+    public boolean actualizar(Student student){
         Connection con = getConnectionDB();
         String sql = "UPDATE student SET firts_name =?, last_name=?,phone=?, email =?";
 
@@ -144,9 +144,11 @@ public class StudentDao {
             ps.setString(1,student.getEmail());
             ps.setInt(1,student.getId_Student());
             ps.executeUpdate();
+            return true;
         }catch(SQLException e){
             System.out.println("Ocurrio un error en  la actualizacion de datos. "+e.getMessage());
         }
+        return false;
     }
     public void eliminar(int id_estudiante){
         Connection con = getConnectionDB();
@@ -163,7 +165,7 @@ public class StudentDao {
         StudentDao studentdao = new StudentDao();
         //List<Student> studentList = studentdao.listar();
         //studentList.forEach(System.out::println);
-        Student objectStudent = new Student(2);
+        Student objectStudent = new Student(1);
         System.out.println("objectStudent = " + objectStudent);
         boolean foundObject = studentdao.searchStudentId(objectStudent);
         if(foundObject){
@@ -171,9 +173,9 @@ public class StudentDao {
         }else{
             System.out.println("no fue encontrado");
         }
-        System.out.println("add new student");
-        Student objectStudent2 = new Student("Gabriel", "Duarte", "3025965432","duartearias2002@gmail.com");
-        boolean objectUpdate = studentdao.addStudent(objectStudent2);
+//        System.out.println("add new student");
+//        Student objectStudent2 = new Student("Gabriel", "Duarte", "3025965432","duartearias2002@gmail.com");
+//        boolean objectUpdate = studentdao.addStudent(objectStudent2);
     }
 }
 

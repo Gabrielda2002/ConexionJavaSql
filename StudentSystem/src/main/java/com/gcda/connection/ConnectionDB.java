@@ -1,4 +1,4 @@
-package main.java.com.gcda.connection;
+package com.gcda.connection;
 
 import java.sql.Connection;
 import java.sql.Driver;

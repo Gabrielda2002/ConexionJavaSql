@@ -1,9 +1,10 @@
-package com.gcda.connection;
+package main.java.com.gcda.connection;
 
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
 
 public class ConnectionDB {
     public  static Connection getConnectionDB(){
@@ -22,7 +23,7 @@ public class ConnectionDB {
             System.out.println("Ocurrio un error en la conexion " + ex.getMessage());
         }
 
-g
+
         return  connection;
 
 
